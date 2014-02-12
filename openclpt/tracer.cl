@@ -357,7 +357,8 @@ inline float3 shade(
 			fabs(current_pos.y - GRID_RADIUS) < GRID_RADIUS &&
 			fabs(current_pos.z - GRID_RADIUS) < GRID_RADIUS
 		) {
-			int gridPos = offsets[GRID_CELL(current_pos.x, current_pos.y, current_pos.z)];
+			int currentCell = GRID_CELL(current_pos.x, current_pos.y, current_pos.z);
+			int gridPos = offsets[currentCell];
 			if(gridPos >= 0) {
 				while(scene[gridPos].object_data.n1.x > -5.0f) {
 					hit current_hit = triangle_intersect(&scene[gridPos].object_data, current_ray);
@@ -369,7 +370,9 @@ inline float3 shade(
 				}
 
 				if(best_hit.hit == 1) {
-					break;
+					if(GRID_CELL(best_hit.position.x, best_hit.position.y, best_hit.position.z) == currentCell) {
+						break;
+					}
 				}
 			}
 			dda_step(&current_pos, step, &tmax, tdelta);
@@ -491,7 +494,8 @@ inline float4 traceNormDepth(
 		fabs(current_pos.y - GRID_RADIUS) < GRID_RADIUS &&
 		fabs(current_pos.z - GRID_RADIUS) < GRID_RADIUS
 	) {
-		int gridPos = offsets[GRID_CELL(current_pos.x, current_pos.y, current_pos.z)];
+		int currentCell = GRID_CELL(current_pos.x, current_pos.y, current_pos.z);
+		int gridPos = offsets[currentCell];
 		if(gridPos >= 0) {
 			while(scene[gridPos].object_data.n1.x > -5.0f) {
 				hit current_hit = triangle_intersect(&scene[gridPos].object_data, current_ray);
@@ -503,7 +507,9 @@ inline float4 traceNormDepth(
 			}
 
 			if(best_hit.hit == 1) {
-				break;
+				if(GRID_CELL(best_hit.position.x, best_hit.position.y, best_hit.position.z) == currentCell) {
+					break;
+				}
 			}
 		}
 		dda_step(&current_pos, step, &tmax, tdelta);
