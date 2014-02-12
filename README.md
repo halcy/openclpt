@@ -6,13 +6,13 @@ A simple OpenCL path tracer with interactive preview.
 Command line options (Mandatory, see also included .bat files):
 
 openclpt.exe 
-	<window width> \
-	<window height> \
-	<speedup grid extent> \
-	<scene file> \
-	<material file> \
-	<samples per kernel invocation> \
-	<camera initialization file>
+	[window width] \
+	[window height] \
+	[speedup grid extent] \
+	[scene file] \
+	[material file] \
+	[samples per kernel invocation] \
+	[camera initialization file]
 
 Controls: 
 * Tracing:
@@ -50,13 +50,16 @@ scenes).
 
 The input file format for scenes and materials is a variant of the obj/mtl
 format: For the scene itself, the format is a subset of obj - only triangles
-with vertex normals are supported. Material names must be numeric. The material
-format is as follows:
+with vertex normals are supported. Material names must be numeric. For the 
+scene to be the right way around, -Y should point up and -Z should point
+forwards.
 
-m <material number>
-a <albedo r> <albedo g> <albedo b>
-e <emissive r> <emissive g> <emissive b>
-p <specularity (0 to 1)> <transparency (0 to 1)> <specular quality>
+The material format is as follows:
+
+m [material number]
+a [albedo r] [albedo g] [albedo b]
+e [emissive r] [emissive g] [emissive b]
+p [specularity (0 to 1)] [transparency (0 to 1)] [specular quality]
 
 The albedo is simply the colour of the material, the emissive colour is the 
 colour of light emitted. Specularity gives how much of the material is 
