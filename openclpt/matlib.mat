@@ -1,0 +1,66 @@
+# super fake mtl file
+# Bright (coldish-)white light
+m 0
+e 1.0 0.9 0.8
+a 1.0 1.0 1.0
+p 0.0 0.0 0.0
+
+# White diffuse
+m 1
+e 0.0 0.0 0.0
+a 0.99999 0.99999 0.99999
+p 0.0 0.0 0.0
+
+# Reflective
+m 2
+e 0.0 0.0 0.0
+a 0.99999 0.99999 0.99999
+p 1.0 0.0 20000.0
+
+# Refractive glossy green
+m 3
+e 0.0 0.0 0.0
+a 0.203125 0.734375 0.505882
+p 1.0 1.0 5.0
+
+# Purple diffuse
+m 4
+e 0.0 0.0 0.0
+a 0.44444 0 0.55555
+p 0.0 0.0 0.0
+
+# Yellow diffuse
+m 5
+e 0.0 0.0 0.0
+a 0.99999 0.99999 0.0
+p 0.0 0.0 0.0
+
+# Refractive perfect white
+m 6
+e 0.0 0.0 0.0
+a 1.0 1.0 1.0
+p 1.0 1.0 20000.0
+
+# Gold glossy
+m 7
+e 0.0 0.0 0.0
+a 0.917 0.886 0.31
+p 1.0 0.0 3.0
+
+# Green emitter 1
+m 8
+e 0.0 0.295 0.255
+a 0.0 0.295 0.255
+p 0.0 0.0 0.0
+
+# Green emitter 2
+m 9
+e 0.0 0.1475 0.1275
+a 0.0 0.1475 0.1275
+p 0.0 0.0 0.0
+
+# Green emitter 3
+m 10
+e 0.0 0.07375 0.06375
+a 0.0 0.07375 0.06375
+p 0.0 0.0 0.0
