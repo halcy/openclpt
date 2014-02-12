@@ -5,6 +5,7 @@ A simple OpenCL path tracer with interactive preview.
 
 Command line options (Mandatory, see also included .bat files):
 
+<pre>
 openclpt.exe 
 	[window width] \
 	[window height] \
@@ -13,6 +14,7 @@ openclpt.exe
 	[material file] \
 	[samples per kernel invocation] \
 	[camera initialization file]
+</pre>
 
 Controls: 
 * Tracing:
@@ -56,10 +58,12 @@ forwards.
 
 The material format is as follows:
 
+<pre>
 m [material number]
 a [albedo r] [albedo g] [albedo b]
 e [emissive r] [emissive g] [emissive b]
 p [specularity (0 to 1)] [transparency (0 to 1)] [specular quality]
+</pre>
 
 The albedo is simply the colour of the material, the emissive colour is the 
 colour of light emitted. Specularity gives how much of the material is 
