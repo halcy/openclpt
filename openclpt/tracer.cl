@@ -202,17 +202,15 @@ float3 simple_brdf_refract(random_state* rstate, const float3 d, const float3 n,
 	float3 rn;
 	
 	// Figure out whether we're going in or out and flip things accordingly
-	float theta1 = dot(d, n);
-	if(theta1 > 0 ) {
-		rr1 = r1;
-		rr2 = r2;
+	float theta1 = -dot(d, n);
+	rr1 = r1;
+	rr2 = r2;
+	if(theta1 < 0 ) {
 		rn = -n;
+		theta1 = -dot(d, rn);
 	}
 	else {
-		rr1 = r2;
-		rr2 = r1;
 		rn = n;
-		theta1 = -theta1;
 	}
 	
 	// Figure out whether we have total internal reflection
@@ -232,11 +230,11 @@ float3 simple_brdf_refract(random_state* rstate, const float3 d, const float3 n,
 	// Choose to either refract or reflect, based on fresnel coefficient
 	if(sample_unit(rstate) > rr) {
 		// Refract
-		return normalize(d * r - rn * (r * theta1 + sqrt(theta2)));
+		return normalize(r * d + (r * theta1 - theta2) * rn);
 	}
 	else {
 		// Reflect
-		return normalize(d - rn * dot(d, rn) * 2.0f);
+		return normalize(d + 2.0f * theta1 * rn);
 	}
 }
 
@@ -258,7 +256,7 @@ inline ray simple_brdf_reflect(random_state* r, const __global simple_brdf_data*
 		} 
 		else {
 			// Refract
-			ray_out.direction = simple_brdf_refract(r, hit_in.hitter.direction, axis, 1.5f, 1.0f);
+			ray_out.direction = simple_brdf_refract(r, hit_in.hitter.direction, axis, 1.0f, 1.5f);
 		}
     }
     
